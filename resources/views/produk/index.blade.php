@@ -82,14 +82,12 @@
                                             class="badge bg-gradient-info">{{ $produk->kategori->nama_kategori ?? '-' }}</span>
                                     </td>
                                     <td class="align-middle text-center text-sm">
-                                        <blade
-                                            if|(%24produk-%3Estatus-%3Enama_status%20%3D%3D%3D%20%26%2339%3Bbisa%20dijual%26%2339%3B)%0D>
-                                            <span
-                                                class="badge bg-gradient-success">{{ $produk->status->nama_status }}</span>
-                                        @else
-                                            <span
-                                                class="badge bg-gradient-secondary">{{ $produk->status->nama_status ?? '-' }}</span>
-                                        @endif
+                                        @php
+                                            $statusName = $produk->status->nama_status ?? '-';
+                                            $isBisaDijual = $statusName === 'bisa dijual';
+                                        @endphp
+                                        <span
+                                            class="badge {{ $isBisaDijual ? 'bg-gradient-success' : 'bg-gradient-secondary' }}">{{ $statusName }}</span>
                                     </td>
                                     <td class="align-middle text-center">
                                         <a href="{{ route('produk.edit', ['id' => $produk->id_produk, 'from' => 'index']) }}"
