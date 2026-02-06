@@ -103,18 +103,15 @@
             const namaProdukError = document.getElementById('nama_produk_error');
             const hargaError = document.getElementById('harga_error');
 
-            // Reset validation
             namaProduk.classList.remove('is-invalid');
             harga.classList.remove('is-invalid');
 
-            // Validate nama produk
             if (!namaProduk.value.trim()) {
                 namaProduk.classList.add('is-invalid');
                 namaProdukError.style.display = 'block';
                 isValid = false;
             }
 
-            // Validate harga (must be numeric)
             if (!harga.value || isNaN(harga.value) || parseFloat(harga.value) < 0) {
                 harga.classList.add('is-invalid');
                 hargaError.style.display = 'block';
